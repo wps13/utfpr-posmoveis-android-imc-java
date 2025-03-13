@@ -6,66 +6,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Peso:"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText"
-        android:textStyle="bold"/>
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/etPeso"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:inputType="numberDecimal"
+        android:layout_height="wrap_content"
         android:autofillHints="Peso"
         android:hint="Peso em Kg"
+        android:inputType="numberDecimal"
         android:minHeight="48dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Altura:"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText"
-        android:textStyle="bold" />
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/etAltura"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:autofillHints="altura"
-        android:inputType="numberDecimal"
         android:hint="Altura em metros"
-        android:minHeight="48dp"/>
+        android:inputType="numberDecimal"
+        android:minHeight="48dp" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IMC:"
-        tools:ignore="HardcodedText" />
+        android:paddingTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="8dp"
+            android:text="IMC:"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/etImc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/etImc"
+        android:id="@+id/tvFaixaImc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.0"
+        android:paddingTop="4dp"
+        android:paddingBottom="16dp"
+        android:text="Faixa não calculada"
+        android:textSize="16sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp">
+
         <Button
             android:id="@+id/btCalcular"
             android:layout_width="wrap_content"

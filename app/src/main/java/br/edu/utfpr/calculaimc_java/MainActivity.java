@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btCalcular;
     private Button btLimpar;
 
+    private TextView tvFaixaImc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 btCalcularOnClick();
             }
         });
-        
+
         btLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onLongClick(View v) {
                 Toast.makeText(MainActivity.this,
                         "Este é o botão Calcular",
-                        Toast.LENGTH_LONG ).show();
+                        Toast.LENGTH_LONG).show();
                 return true;
             }
         });
+
+        tvFaixaImc = findViewById(R.id.tvFaixaImc);
     }
 
     private void btLimparOnClick() {
@@ -70,13 +74,36 @@ public class MainActivity extends AppCompatActivity {
         etPeso.requestFocus();
     }
 
+    private String getFaixaImc(double resultado) {
+        if (resultado < 18.50) {
+            return "Você está abaixo do peso ideal";
+        }
+        if (resultado >= 18.50 && resultado < 25.0) {
+            return "Seu peso está normal!";
+        }
+        if (resultado >= 25.0 && resultado < 30.0) {
+            return "Você está com sobrepeso";
+        }
+        if (resultado >= 30.0 && resultado < 35.0) {
+            return "Obesidade grau 1";
+        }
+        if (resultado >= 35.0 && resultado < 40.0) {
+            return "Obesidade grau 2";
+        }
+        if (resultado >= 40.0) {
+            return "Obesidade grau 3";
+        }
+
+        return "Faixa não encontrada";
+    }
+
     private void btCalcularOnClick() {
-        if(etPeso.getText().toString().equals("")) {
+        if (etPeso.getText().toString().equals("")) {
             etPeso.setError("Campo peso deve ser preenchido");
             return;
         }
 
-        if(etAltura.getText().toString().equals("")) {
+        if (etAltura.getText().toString().equals("")) {
             etAltura.setError("Campo altura deve ser preenchido");
             return;
         }
@@ -87,10 +114,11 @@ public class MainActivity extends AppCompatActivity {
 
         //processamento
         double res = peso / Math.pow(altura, 2);
-
+        String faixaImcMsg = getFaixaImc(res);
 
         //saida
         DecimalFormat df = new DecimalFormat("0.00");
         tvImc.setText(df.format(res));
+        tvFaixaImc.setText(faixaImcMsg);
     }
 }
